@@ -1,0 +1,10 @@
+.locationWrapper {
+  display: flex;
+}
+
+.locationCard {
+  border: 3px solid darkmagenta;
+  border-radius: 8px;
+  padding: 0 8px;
+  background-color: khaki
+}
