@@ -4,7 +4,7 @@ import "./location.css"
 export default class LocationList extends Component {
   render() {
       return (
-          <React.Fragment>
+          <section className="content">
             <h1>Our Locations</h1>
             <div className="locationWrapper">
               <section className="locationCard">
@@ -16,7 +16,7 @@ export default class LocationList extends Component {
                 <h5>1234 Sesame Street</h5>
               </section>
             </div>
-          </React.Fragment>
+          </section>
       );
   }
 }
