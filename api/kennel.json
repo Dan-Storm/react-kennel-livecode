@@ -1,20 +1,76 @@
 {
   "employees": [
-    { "id": 1, "name": "Jessica Younker" },
-    { "id": 2, "name": "Jordan Nelson" },
-    { "id": 3, "name": "Zoe LeBlanc" },
-    { "id": 4, "name": "Blaise Roberts" }
+    {
+      "id": 1,
+      "name": "Jessica Younker"
+    },
+    {
+      "id": 2,
+      "name": "Jordan Nelson"
+    },
+    {
+      "id": 3,
+      "name": "Zoe LeBlanc"
+    },
+    {
+      "id": 4,
+      "name": "Blaise Roberts"
+    }
   ],
   "locations": [
-    { "id": 1, "name": "Nashville North", "address": "500 Circle Way" },
-    { "id": 2, "name": "Nashville South", "address": "10101 Binary Court" }
+    {
+      "id": 1,
+      "name": "Nashville North",
+      "address": "500 Circle Way"
+    },
+    {
+      "id": 2,
+      "name": "Nashville South",
+      "address": "10101 Binary Court"
+    }
   ],
   "animals": [
-    { "id": 1, "name": "Doodles" },
-    { "id": 2, "name": "Jack" },
-    { "id": 3, "name": "Angus" },
-    { "id": 4, "name": "Henley" },
-    { "id": 5, "name": "Derkins" },
-    { "id": 6, "name": "Checkers" }
+    {
+      "id": 1,
+      "name": "Doodles",
+      "breed": "Pomeranian",
+      "employeeId": 1
+    },
+    {
+      "id": 2,
+      "name": "Jack",
+      "breed": "Pomeranian",
+      "employeeId": 2
+    },
+    {
+      "id": 3,
+      "name": "Angus",
+      "breed": "Pomeranian",
+      "employeeId": 3
+    },
+    {
+      "id": 4,
+      "name": "Henley",
+      "breed": "Pomeranian",
+      "employeeId": 4
+    },
+    {
+      "id": 5,
+      "name": "Derkins",
+      "breed": "Pomeranian",
+      "employeeId": 1
+    },
+    {
+      "id": 6,
+      "name": "Checkers",
+      "breed": "Pomeranian",
+      "employeeId": 2
+    },
+    {
+      "name": "Porkchop",
+      "breed": "Cartoon",
+      "employeeId": 3,
+      "id": 7
+    }
   ]
 }

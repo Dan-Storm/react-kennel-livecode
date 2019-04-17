@@ -6,6 +6,7 @@ import AnimalList from './animal/AnimalList'
 import AnimalManager from '../modules/AnimalManager'
 import AnimalDetail from './animal/AnimalDetail'
 import { withRouter } from 'react-router'
+import AnimalForm from './animal/AnimalForm'
 
 class ApplicationViews extends Component {
 
@@ -29,11 +30,20 @@ class ApplicationViews extends Component {
     }
 
     deleteAnimal = id => AnimalManager.delete(id)
-    .then(AnimalManager.getAll)
-    .then(animals => {
-        this.props.history.push("/animals")
-        this.setState({ animals: animals })
-    })
+        .then(AnimalManager.getAll)
+        .then(animals => {
+            this.props.history.push("/animals")
+            this.setState({ animals: animals })
+        })
+
+    addAnimal = animal =>
+        AnimalManager.post(animal)
+            .then(() => AnimalManager.getAll())
+            .then(animals =>
+                this.setState({
+                    animals: animals
+                })
+            );
 
     render() {
         return (
@@ -42,7 +52,7 @@ class ApplicationViews extends Component {
                     return <LocationList locations={this.state.locations} />
                 }} />
                 <Route exact path="/animals" render={(props) => {
-                    return <AnimalList animals={this.state.animals} deleteAnimal={this.deleteAnimal} />
+                    return <AnimalList animals={this.state.animals} deleteAnimal={this.deleteAnimal} {...props} />
                 }} />
                 <Route path="/employees" render={(props) => {
                     return <EmployeeList employees={this.state.employees} />
@@ -62,6 +72,11 @@ class ApplicationViews extends Component {
 
                     return <AnimalDetail animal={animal}
                         deleteAnimal={this.deleteAnimal} />
+                }} />
+                <Route path="/animals/new" render={(props) => {
+                    return <AnimalForm {...props}
+                        addAnimal={this.addAnimal}
+                        employees={this.state.employees} />
                 }} />
             </React.Fragment>
         )
