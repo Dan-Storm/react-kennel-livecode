@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from "react"
 import LocationList from './location/LocationList'
 import EmployeeList from './employee/EmployeeList'
@@ -7,6 +7,7 @@ import AnimalManager from '../modules/AnimalManager'
 import AnimalDetail from './animal/AnimalDetail'
 import { withRouter } from 'react-router'
 import AnimalForm from './animal/AnimalForm'
+import Login from './authentication/Login'
 
 class ApplicationViews extends Component {
 
@@ -15,6 +16,10 @@ class ApplicationViews extends Component {
         locations: [],
         animals: []
     }
+
+    // Check if credentials are in local storage
+    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
+
 
     componentDidMount() {
         const newState = {}
@@ -48,14 +53,20 @@ class ApplicationViews extends Component {
     render() {
         return (
             <React.Fragment>
+                <Route path="/login" component={Login} />
                 <Route exact path="/" render={(props) => {
                     return <LocationList locations={this.state.locations} />
                 }} />
                 <Route exact path="/animals" render={(props) => {
                     return <AnimalList animals={this.state.animals} deleteAnimal={this.deleteAnimal} {...props} />
                 }} />
-                <Route path="/employees" render={(props) => {
-                    return <EmployeeList employees={this.state.employees} />
+                <Route exact path="/employees" render={props => {
+                    if (this.isAuthenticated()) {
+                        return <EmployeeList deleteEmployee={this.deleteEmployee}
+                            employees={this.state.employees} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
                     // Find the animal with the id of the route parameter
