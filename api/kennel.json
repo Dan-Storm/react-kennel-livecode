@@ -51,8 +51,8 @@
     {
       "id": 4,
       "name": "Henley",
-      "breed": "Pomeranian",
-      "employeeId": 4
+      "breed": "Lab",
+      "employeeId": 3
     },
     {
       "id": 5,
@@ -67,10 +67,10 @@
       "employeeId": 2
     },
     {
+      "id": 7,
       "name": "Porkchop",
-      "breed": "Cartoon",
-      "employeeId": 3,
-      "id": 7
+      "breed": "Nick Cartoon",
+      "employeeId": 3
     }
   ]
 }

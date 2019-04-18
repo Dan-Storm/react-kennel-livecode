@@ -3,6 +3,7 @@ import "./location.css"
 
 export default class LocationList extends Component {
   render() {
+    console.log(this.props.locations)
       return (
           <section className="content">
             <h1>Our Locations</h1>

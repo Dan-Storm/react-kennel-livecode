@@ -8,7 +8,7 @@ import AnimalDetail from './animal/AnimalDetail'
 import { withRouter } from 'react-router'
 import AnimalForm from './animal/AnimalForm'
 import Login from './authentication/Login'
-
+import AnimalEditForm from './animal/AnimalEditForm'
 class ApplicationViews extends Component {
 
     state = {
@@ -50,6 +50,16 @@ class ApplicationViews extends Component {
                 })
             );
 
+    updateAnimal = (editedAnimalObject) => {
+        return AnimalManager.put(editedAnimalObject)
+            .then(() => AnimalManager.getAll())
+            .then(animals => {
+                this.setState({
+                    animals: animals
+                })
+            });
+    };
+
     render() {
         return (
             <React.Fragment>
@@ -69,7 +79,12 @@ class ApplicationViews extends Component {
                         return <Redirect to="/login" />
                     }
                 }} />
-                <Route path="/animals/:animalId(\d+)" render={(props) => {
+                <Route
+                    path="/animals/:animalId(\d+)/edit" render={props => {
+                        return <AnimalEditForm {...props} employees={this.state.employees} updateAnimal={this.updateAnimal} />
+                    }}
+                />
+                <Route exact path="/animals/:animalId(\d+)" render={(props) => {
                     // Find the animal with the id of the route parameter
                     console.log("PROPS", props)
                     console.log("THIS.PROPS", this.props)
@@ -85,6 +100,7 @@ class ApplicationViews extends Component {
                     return <AnimalDetail animal={animal}
                         deleteAnimal={this.deleteAnimal} />
                 }} />
+
                 <Route path="/animals/new" render={(props) => {
                     return <AnimalForm {...props}
                         addAnimal={this.addAnimal}
